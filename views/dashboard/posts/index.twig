@@ -1,0 +1,47 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-xs-6">
+            <h2>Job Postings</h2>
+        </div>
+
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-primary add-item" href="/dashboard/add/post">Add New</a>
+        </div>
+
+        <div id="postings" class="row list-group">
+            <div class="col-xs-12">
+                {% if posts %}
+                    <table id="posts-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Applicants</th>
+                            <th>Views</th>
+                            <th>By</th>
+                            <th>Added</th>
+                            <th class="no-sort">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for post in posts %}
+                            <tr>
+                                <td>{{ post.short_description }}</td>
+                                <td>{{ post.application_count }}</td>
+                                <td>{{ post.views }}</td>
+                                <td><a href="/dashboard/client/{{ post.client_slug }}">{{ post.client_name }}</a></td>
+                                <td>{{ post.created_at|date('m-d-Y h:iA') }}</td>
+                                <td><a href="/dashboard/post/{{ post.client_slug }}/{{ post.slug }}">View</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                {% else %}
+                    <h3>No Job Posts Found</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

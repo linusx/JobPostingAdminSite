@@ -1,0 +1,41 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-xs-6">
+            <h2>Clients</h2>
+        </div>
+        <div class="col-xs-6 text-right">
+            <a class="btn btn-primary add-item" href="/dashboard/add/client">Add New</a>
+        </div>
+        <div id="clients" class="row list-group">
+            <div class="col-xs-12">
+                {% if clients %}
+                <table id="client-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact</th>
+                            <th>Created</th>
+                            <th class="no-sort">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td>{{ client.name }}</td>
+                                <td>{{ client.contact_firstname }} {{ client.contact_lastname }}</td>
+                                <td>{{ client.created_at|date('m-d-Y h:iA') }}</td>
+                                <td><a href="/dashboard/client/{{ client.slug }}">View</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                    <h3>No Clients Found</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

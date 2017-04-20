@@ -1,0 +1,119 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="applicant" class="row individual-wrapper">
+            {% if error %}
+                <div class="alert alert-danger alert-dismissable fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Error!</strong> {{ error|raw }}
+                </div>
+            {% endif %}
+            {% if applicant %}
+                <div class="col-xs-12 no-col-padding header">
+                    <div class="col-xs-12 col-md-7 description">
+                        <h3>{{ applicant.firstname }} {{ applicant.lastname }}</h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4 by">
+                        Joined: <strong>{{ applicant.created_at|date('l, M. j, Y') }}</strong><br/>
+                        {{ applicant.email }} / {{ applicant.role }}
+                    </div>
+
+                    <div class="col-xs-12 col-md-1 buttons">
+                        <button type="button" class="btn btn-danger delete-item" data-redirect="/dashboard/users" data-identifier="/dashboard/user/{{ applicant.id }}">Delete</button>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 list">
+                    {% if 'applicant' == applicant.role %}
+                    <div class="col-xs-12">
+                        <h3>
+                            Job History
+                            <button type="button" class="btn btn-primary btn-sm add-history" data-toggle="modal" data-target="#add-job">Add</button>
+                        </h3>
+
+                        {% if applicant.job_history %}
+                            {% for job in applicant.job_history %}
+                                {% include 'dashboard/applicants/job_card.twig' with job %}
+                            {% endfor %}
+                        {% else %}
+                            Nothing entered.
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    <div class="col-xs-12">
+                        <h3>Applied To</h3>
+                        {% if applicant.applied_to %}
+                            <table id="applicant-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Applied</th>
+                                    <th class="no-sort">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for applicant in applicant.applied_to %}
+                                    <tr>
+                                        <td>{{ applicant.short_description }}</td>
+                                        <td>{{ applicant.applied_date|date('m-d-Y h:iA') }}</td>
+                                        <td><a href="/dashboard/post/{{ applicant.client_slug }}/{{ applicant.slug }}">View</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <strong>No Applicants At This Time</strong>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="add-job" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form action="/dashboard/add/user/job" method="POST" id="job-add">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Job</h4>
+                    </div>
+                    <div class="modal-body">
+                        {% include 'dashboard/applicants/add_job.twig' %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" >Add</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <input type="hidden" name="user_slug" value="{{ applicant.slug }}" />
+                    <input type="hidden" name="user_id" value="{{ applicant.id }}" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript">
+        (function($){
+        	$(document).on('submit', '#job-add', function(){
+                var start_month = $('select[name=start_month]').val(),
+	                start_year = $('select[name=start_year]').val(),
+	                end_month = $('select[name=end_month]').val(),
+	                end_year = $('select[name=end_year]').val();
+
+                $('#start-date').val( start_year + '-' + start_month + '-01' );
+		        $('#end-date').val( end_year + '-' + end_month + '-01' );
+            });
+        })(jQuery);
+    </script>
+{% endblock %}

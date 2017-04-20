@@ -1,0 +1,111 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="post" class="row individual-wrapper">
+            {% if client %}
+
+                <div class="col-xs-12 no-col-padding header">
+                    <div class="col-xs-12 col-md-9 description">
+                        <h3>{{ client.name }}</h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-3 by">
+                        <div class="date">
+                            <button type="button" class="btn btn-danger delete-item" data-redirect="/dashboard/clients" data-identifier="/dashboard/client/{{ client.id }}">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 no-col-padding details">
+                    <div class="col-xs-12">
+                        <h4>Details</h4>
+                        <div class="col-xs-6">
+                            <label>Address:</label>
+                            <span>{{ client.address }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>Address 2:</label>
+                            <span>{{ client.address2 }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>City:</label>
+                            <span>{{ client.city }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>State:</label>
+                            <span>{{ client.state }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>Zip Code:</label>
+                            <span>{{ client.zipcode }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>Added:</label>
+                            <span>{{ client.created_at|date('l, M. j, Y') }}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <h4>Contact Information</h4>
+
+                        <div class="col-xs-6">
+                            <label>Name:</label>
+                            <span>{{ client.contact_firstname }} {{ client.contact_lastname }}</span>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label>Email:</label>
+                            <span>{{ client.contact_email }}</span>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12 col-md-6 list">
+                    <div class="col-xs-6">
+                        <h4>Job Postings</h4>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <a class="btn btn-primary add-item" href="/dashboard/add/post?client_id={{ client.id }}">Add New</a>
+                    </div>
+                    <div class="col-xs-12">
+                        {% if client.posts %}
+                            <table id="applicant-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Applied</th>
+                                    <th>Views</th>
+                                    <th>Created</th>
+                                    <th class="no-sort">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for post in client.posts %}
+                                    <tr>
+                                        <td>{{ post.short_description }}</td>
+                                        <td>{{ post.application_count }}</td>
+                                        <td>{{ post.views }}</td>
+                                        <td>{{ post.created_at|date('m-d-Y h:iA') }}</td>
+                                        <td><a href="/dashboard/post/{{ client.slug }}/{{ post.slug }}">View</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <strong>No Applicants At This Time</strong>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

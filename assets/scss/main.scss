@@ -1,0 +1,157 @@
+@import "bootstrap";
+@import "datatables";
+@import "font-awesome/font-awesome";
+@import "applicants";
+@import "posts";
+
+h2 {
+  margin-top: 0;
+}
+
+.navbar {
+  background-color: #666;
+  color: #fff;
+
+  ul.nav {
+	li {
+	  a {
+		color: #fff;
+
+		&:hover {
+		  color: #ccc;
+		}
+	  }
+	}
+  }
+
+  ul.dropdown-menu {
+	li {
+	  a {
+		color: #666;
+
+		@media (max-width: $screen-xs-max) {
+		  color: #fff !important;
+		}
+
+		&:hover {
+		  color: #000;
+
+		  @media (max-width: $screen-xs-max) {
+			color: #ccc !important;
+		  }
+		}
+	  }
+	}
+  }
+
+  a.navbar-brand {
+	color: #fff;
+
+	&:hover {
+	  color: #ccc;
+	}
+  }
+}
+
+.individual-wrapper {
+
+  .buttons {
+	text-align: right;
+
+	@media (max-width: $screen-xs-max) {
+	  text-align: center;
+	}
+  }
+
+  .header {
+	margin-bottom: 20px;
+  }
+
+  .description {
+	h3 {
+	  margin-top: 0;
+
+	  @media (max-width: $screen-xs-max) {
+		text-align: center;
+	  }
+	}
+  }
+
+  .views {
+	text-align: left;
+
+	@media (max-width: $screen-xs-max) {
+	  text-align: center;
+	  margin-bottom: 5px;
+	}
+
+  }
+
+  .by {
+	text-align: right;
+
+	@media (max-width: $screen-xs-max) {
+	  text-align: center;
+	}
+	
+	.date {
+	  font-size: 12px;
+	}
+  }
+
+  .details {
+	margin-bottom: 40px;
+  }
+
+  .list {
+	margin-bottom: 80px;
+  }
+}
+
+
+.no-col-padding > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+
+.footer-bottom {
+  font-size: 12px;
+  min-height: 50px;
+  display: block;
+  background-color: #666;
+  color: #fff;
+
+  .container {
+	padding: 5px;
+  }
+
+  p {
+	font-size: 12px;
+  }
+}
+
+.btn {
+  outline: 0;
+}
+
+.shadow {
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+
+  &:before {
+	position: absolute;
+	content: "";
+	width: 80%;
+	top: 140px;
+	bottom: 15px;
+	left: 30px;
+	background-color: #9F8641;
+	z-index: -1;
+	-webkit-box-shadow: 0 23px 17px 0 #9F8641;
+	-moz-box-shadow: 0 23px 17px 0 #9F8641;
+	box-shadow: 0 23px 17px 0 #9F8641;
+	-webkit-transform: rotate(-4deg);
+	-moz-transform: rotate(-4deg);
+	transform: rotate(-4deg);
+  }
+}

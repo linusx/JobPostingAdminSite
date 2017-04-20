@@ -1,0 +1,21 @@
+<div class="row job-card shadow">
+    <div class="col-xs-12 title">
+        <h4>{{ job.title }}</h4>
+    </div>
+    <div class="col-xs-12 no-col-padding company-wrapper">
+        <div class="col-xs-12 col-md-8 company-info">
+            <span class="company-name">{{ job.company_name }}</span>{% if job.company_city %} / <span class="company-address">{{ job.company_city }}, {{ job.company_state }}</span>{% endif %}
+        </div>
+        <div class="col-xs-12 col-md-4 dates">
+            {{ job.start_date|date('F Y') }}
+            {% if job.end_date %}
+                - {{ job.end_date|date('F Y') }}
+            {% else %}
+                - Present
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-xs-12 description">
+        {{ job.description|nl2br }}
+    </div>
+</div>

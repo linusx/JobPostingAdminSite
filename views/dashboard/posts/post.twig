@@ -1,0 +1,63 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="post" class="row individual-wrapper">
+            {% if post %}
+
+                <div class="col-xs-12 no-col-padding header">
+                    <div class="col-xs-12 col-md-7 description">
+                        <h3>{{ post.short_description }}</h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-1 views">
+                        Views: <strong>{{ post.views }}</strong>
+                    </div>
+
+                    <div class="col-xs-12 col-md-3 by">
+                        Posted By: <strong><a href="/dashboard/clients/{{ post.client_slug }}">{{ post.client_name }}</a></strong>
+                        <div class="date">
+                            {{ post.created_at|date('l, M. j, Y') }}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-1 buttons">
+                        <button type="button" class="btn btn-danger delete-item" data-redirect="/dashboard/posts" data-identifier="/dashboard/post/{{ post.id }}">Delete</button>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 details">
+                    {{ post.details|raw|nl2br }}
+                </div>
+
+                <div class="col-xs-12 list">
+                    <h3>Applicants</h3>
+                    {% if post.applicants %}
+                        <table id="applicant-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Created</th>
+                                <th class="no-sort">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for applicant in post.applicants %}
+                                <tr>
+                                    <td>{{ applicant.firstname }} {{ applicant.lastname }}</td>
+                                    <td>{{ applicant.email }}</td>
+                                    <td>{{ applicant.created_at|date('m-d-Y h:iA') }}</td>
+                                    <td><a href="/dashboard/user/{{ applicant.slug }}">View</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <strong>No Applicants At This Time</strong>
+                    {% endif %}
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,94 @@
+div.dataTables_wrapper {
+  table.data-table {
+	thead {
+	  th {
+		font-size: 14px;
+
+		@media (max-width: $screen-xs-max) {
+		  font-size: 12px;
+
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+
+		}
+	  }
+	}
+
+	tbody {
+	  td {
+		font-size: 14px;
+
+		@media (max-width: $screen-xs-max) {
+		  font-size: 12px;
+		}
+	  }
+	}
+  }
+
+  div.dataTables_length {
+	width: 45%;
+	float: left;
+	text-align: left;
+
+	select {
+	  width: auto;
+	  border: solid 1px #000;
+	}
+  }
+
+  div.dataTables_filter {
+	width: 45%;
+	float: right;
+	text-align: right;
+
+	input[type="search"] {
+	  outline: 0;
+	  width: 125px;
+	  border: solid 1px #ddd;
+
+	  @media (max-width: $screen-xs-max) {
+		width: 85px;
+	  }
+
+	}
+  }
+
+  div.dataTables_paginate {
+	width: 45%;
+	float: right;
+
+	@media (max-width: $screen-xs-max) {
+	  font-size: 12px;
+	}
+  }
+
+  div.dataTables_info {
+	width: 45%;
+	float: left;
+	padding-top: 0;
+
+	@media (max-width: $screen-xs-max) {
+	  font-size: 12px;
+	}
+  }
+
+  .paginate_button {
+	margin: 5px;
+  }
+
+  .dtr-details {
+	list-style-type: none;
+	padding-left: 0;
+	margin-top: 5px;
+	margin-bottom: 0;
+
+	li {
+	  margin-bottom: 5px;
+	}
+  }
+
+  .sorting_1 {
+	outline: 0;
+  }
+}

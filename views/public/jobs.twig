@@ -1,0 +1,34 @@
+{% extends "public/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="postings" class="row list-group">
+            <div class="col-xs-12">
+                {% if posts %}
+                    {% for post in posts %}
+                        <div class="row post-wrapper shadow">
+                            <div class="col-xs-12 col-md-5 post-description">
+                                <h3>{{ post.short_description }}</h3>
+                            </div>
+                            <div class="col-xs-12 col-md-4 posted-by">
+                                <span>Posted By: <strong>{{ post.client_name }}</strong></span>
+                            </div>
+                            <div class="col-xs-12 col-md-3 posted-date">
+                                <span>Posted On: <strong>{{ post.created_at|date('m-d-Y h:iA') }}</strong></span>
+                            </div>
+                            <div class="col-xs-12 post-details truncate">
+                                {{ post.details|raw }}
+                            </div>
+
+                            <div class="col-xs-12">
+                                <a href="/job/{{ post.slug }}">View Details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>No Job Posts Found</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

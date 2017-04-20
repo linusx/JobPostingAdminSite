@@ -1,0 +1,86 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="post" class="row individual-wrapper">
+            <div class="col-xs-12 no-col-padding header">
+                {% if error %}
+                    <div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> {{ error|raw }}
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <form action="" method="POST" id="post-add" data-toggle="validator">
+                        <div class="col-xs-12">
+                            <h3>Add Post</h3>
+                        </div>
+
+                        <div class="col-xs-6 form-group">
+                            <label>Short Description</label>
+                            <input class="form-control" type="text" name="short_description"/>
+                        </div>
+
+                        <div class="col-xs-6 form-group">
+                            <label>Client</label>
+                            <select class="form-control" name="client_id">
+                                <option value="0">-- Select Client --</option>
+                                {% for client in clients %}
+                                    <option value="{{ client.id }}"{{ client_id == client.id ? ' selected="selected"' : '' }}>{{ client.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-xs-12 form-group">
+                            <label>Details</label>
+                            <textarea class="form-control" name="details" id="post-details"></textarea>
+                        </div>
+
+                        <div class="col-xs-12 form-group text-right">
+                            <button type="submit" class="btn btn-primary">Add Post</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block header %}
+    <link href="/css/froala/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/froala/froala_style.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block footer %}
+    <script src="/js/froala/froala_editor.pkgd.min.js"></script>
+    <script>
+        $(function() {
+        	$('textarea').froalaEditor({
+		        height: 400,
+		        toolbarButtons: ['bold', 'italic', 'underline', 'outdent', 'indent', 'clearFormatting', 'insertTable', 'html']
+            });
+
+        	$(document).on('submit', '#post-add', function() {
+                var client = $('select[name="client_id"]'),
+                    short = $('input[name="short_description"]'),
+                    has_error = false;
+
+                $('div.form-group').removeClass('has-error');
+
+                if ( 0 === parseInt(client.val() ) ) {
+                	client.parent().addClass('has-error');
+	                has_error = true;
+                }
+
+                if ( '' === short.val() ) {
+	                short.parent().addClass('has-error');
+	                has_error = true;
+                }
+
+                return true !== has_error;
+
+            });
+        });
+    </script>
+{% endblock %}

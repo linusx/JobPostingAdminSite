@@ -1,0 +1,39 @@
+{% extends "public/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="post" class="row individual-wrapper">
+            {% if post %}
+
+                <div class="col-xs-12 no-col-padding header">
+                    <div class="col-xs-12 col-md-8 description">
+                        <h3>{{ post.short_description }}</h3>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4 by">
+                        Posted By: <strong>{{ post.client_name }}</strong>
+                        <div class="date">
+                            {{ post.created_at|date('l, M. j, Y') }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 details">
+                    {{ post.details|raw|nl2br }}
+                </div>
+
+                {% if user %}
+                    <div class="col-xs-12 list">
+                        {% if false == applied %}
+                            <button type="button" class="btn btn-info apply" data-post-id="{{ post.id }}" data-user-id="{{ user.id }}">Apply</button>
+                            <span class="result"></span>
+                        {% else %}
+                            <strong>You applied for this.</strong>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

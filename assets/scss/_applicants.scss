@@ -1,0 +1,53 @@
+.post-wrapper {
+
+  .header {
+	margin-bottom: 20px;
+  }
+
+  .post-description {
+	h3 {
+	  margin-top: 0;
+
+	  @media (max-width: $screen-xs-max) {
+		text-align: center;
+	  }
+	}
+  }
+
+  .posted-by {
+	text-align: right;
+
+	.posted-date {
+		font-size: 12px;
+	}
+  }
+
+  .post-details {
+	margin-bottom: 40px;
+  }
+
+  .applicant-list {
+	margin-bottom: 80px;
+  }
+
+}
+
+.job-card {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+
+  .company-wrapper {
+	margin-bottom: 10px;
+	font-weight: 600;
+
+	.company-info {
+	  text-align: left;
+	}
+
+	.dates {
+	  text-align: right;
+	}
+
+  }
+}

@@ -1,0 +1,101 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div id="post" class="row individual-wrapper">
+            <div class="col-xs-12 no-col-padding header">
+                {% if error %}
+                    <div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> {{ error|raw }}
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <form action="" method="POST" id="client-add">
+                        <div class="col-xs-12">
+                            <h3>Add Client</h3>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 form-group">
+                            <label>Name</label>
+                            <input class="form-control" type="text" name="name" placeholder="Client Name"/>
+                        </div>
+                        <div class="col-xs-12 col-md-6 form-group">
+                            <label>Contact</label>
+                            <select class="form-control" name="contact_id">
+                                <option value="0">-- Select Contact --</option>
+                                {% for contact in contacts %}
+                                    <option value="{{ contact.id }}">{{ contact.firstname }} {{ contact.lastname }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <div class="row">
+                                <label class="col-xs-12">Address</label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <input class="form-control" type="text" name="address" placeholder="Address"/>
+                                </div>
+
+                                <div class="col-xs-12 col-md-6">
+                                    <input class="form-control" type="text" name="address2" placeholder="Room/Suite/Floor/Apt."/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city" placeholder="City"/>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 form-group">
+                            <label>State</label>
+                            <select class="form-control" name="state">
+                                <option value="0">-- Select State --</option>
+                                {% for abbr,state in states %}
+                                    <option value="{{ abbr }}">{{ state }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-md-6 form-group">
+                            <label>Zip Code</label>
+                            <input class="form-control" type="text" name="zipcode" placeholder="Zip Code"/>
+                        </div>
+
+                        <div class="col-xs-12 form-group text-right">
+                            <button type="submit" class="btn btn-primary">Add Client</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script>
+		$(function() {
+			$(document).on('submit', '#client-add', function() {
+				var contact = $('select[name="contact_id"]'),
+					name = $('input[name="name"]'),
+					has_error = false;
+
+				$('div.form-group').removeClass('has-error');
+
+				if ( 0 === parseInt(contact.val() ) ) {
+					contact.parent().addClass('has-error');
+					has_error = true;
+				}
+
+				if ( '' === name.val() ) {
+					name.parent().addClass('has-error');
+					has_error = true;
+				}
+
+				return true !== has_error;
+
+			});
+		});
+    </script>
+{% endblock %}

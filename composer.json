@@ -1,0 +1,33 @@
+{
+    "name": "root/job-posting-admin-site",
+    "description": "Job Post Admin Site",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Bill Van Pelt",
+            "email": "linusx@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^2.4",
+        "slim/slim": "^3.6",
+        "slim/twig-view": "^2.1",
+        "tuupola/slim-basic-auth": "^2.2",
+        "twbs/bootstrap-sass": "^3.3",
+        "components/jquery": "^3.2",
+        "twig/extensions": "*",
+        "datatables/datatables": "^1.10",
+        "froala/wysiwyg-editor": "^2.4",
+        "components/font-awesome": "^4.7"
+    },
+    "scripts": {
+        "post-install-cmd": "Composer\\Install::postInstall"
+    },
+    "autoload": {
+        "psr-4": {
+            "JobPostings\\": "src/JobPostings/",
+            "Composer\\": "src/Composer/"
+        }
+    }
+}

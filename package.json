@@ -1,0 +1,26 @@
+{
+  "name": "job-posting-admin-site",
+  "version": "0.0.1",
+  "description": "Job Post Admin Site",
+  "main": "jobpostings.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-uglifycss": "^1.0.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linusx/JobPostingAdminSite.git"
+  },
+  "author": "Bill Van Pelt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linusx/JobPostingAdminSite/issues"
+  },
+  "homepage": "https://github.com/linusx/JobPostingAdminSite#readme"
+}

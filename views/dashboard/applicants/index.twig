@@ -1,0 +1,40 @@
+{% extends "dashboard/base.twig" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Users</h2>
+        <div id="applicants" class="row list-group">
+            <div class="col-xs-12">
+                {% if applicants %}
+                <table id="applicant-list" class="data-table table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Jobs</th>
+                            <th>Role</th>
+                            <th>Created</th>
+                            <th class="no-sort">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for applicant in applicants %}
+                            <tr>
+                                <td>{{ applicant.firstname }} {{ applicant.lastname }}</td>
+                                <td>{{ applicant.email }}</td>
+                                <td>{{ applicant.application_count }}</td>
+                                <td>{{ applicant.role }}</td>
+                                <td>{{ applicant.created_at|date('m-d-Y h:iA') }}</td>
+                                <td><a href="/dashboard/user/{{ applicant.slug }}">View</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                    <h3>No Job Applicants Found</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
