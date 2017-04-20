@@ -1,6 +1,6 @@
 # Job Posting Site Demo
 
-##Installation:
+## Installation:
 1. Clone repository
 2. Add a virtual host and point the doc root to the web folder.
 3. Copy `env.example` to `.env` and edit file for your settings.
@@ -43,6 +43,7 @@ CREATE TABLE `users` (
 **Clients Table:**
 
 Client information. Address and stuff. References user table for point of contact.
+
 ```
 CREATE TABLE `clients` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -58,10 +59,12 @@ CREATE TABLE `clients` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
+
 **Job Post Table:**
 
 Job post information. Details allows html.
-When a client is deleted, it will remove the posts associated with the client. 
+When a client is deleted, it will remove the posts associated with the client.
+
 ```
 CREATE TABLE `posts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -82,7 +85,8 @@ CREATE TABLE `posts` (
 **Post Applications Table:**
 
 Post application. Reference table for user and job post.
-When a user or post is deleted it will remove the application.``
+When a user or post is deleted it will remove the application.
+
 ```
 CREATE TABLE `applications` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -100,6 +104,7 @@ CREATE TABLE `applications` (
 **Users Job History**
 
 Something to build there resume.
+
 ```
 CREATE TABLE `applicant_history` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -115,4 +120,5 @@ CREATE TABLE `applicant_history` (
   PRIMARY KEY (`id`),
   KEY `Applicant` (`user_id`),
   CONSTRAINT `Applicant` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;```
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
