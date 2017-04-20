@@ -5,10 +5,9 @@
 2. Add a virtual host and point the doc root to the web folder.
 3. Copy `env.example` to `.env` and edit file for your settings.
 4. Run `composer install`
-5. Run `npm install`
-6. Run `gulp`
-7. Visit your site at /install to install the DB and test data.
-8. Visit your site at /dashboard to view the dashboard.
+5. Run `gulp`
+6. Visit your site at /install to install the DB and test data.
+7. Visit your site at /dashboard to view the dashboard.
 
 Username/Password is linusx@gmail.com/password.
 
