@@ -12,6 +12,10 @@
 
 Username/Password is linusx@gmail.com/password.
 
+I setup a demo site so you can see it.
+Dashboard: http://jobs.vp2k.com/dashboard
+Sample Post: http://jobs.vp2k.com/job/58f8d64dbe528
+
 **Some Notes:**
 
 This was done pretty quickly. So it is missing some validation and some pages, such as login and registration.
